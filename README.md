@@ -1,5 +1,15 @@
 # MARS_ROVER
 
+## To test the programme
+
+It is better to comment out the following function in each script which may hide out the success message
+
+`clearLastLine()`
+
+And then run:
+
+`npm test`
+
 ## Setting the Scene
 
 You have been asked to create a program to move rovers around the surface of Mars! 
