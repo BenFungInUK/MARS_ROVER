@@ -1,6 +1,6 @@
 const { createRover } = require("../src/roverState");
 
-describe("Set up the action for Rover", () => {
+describe("Set up the initial location for Rover", () => {
   let samplePlateau = { x: 10, y: 10 };
 
   test("The input is undefined/null", () => {
@@ -27,8 +27,8 @@ describe("Set up the action for Rover", () => {
     ["-6 9 N", "Coordinate cannot be negative"],
     ["6 -9 N", "Coordinate cannot be negative"],
     ["-6 -9 N", "Coordinate cannot be negative"],
-  ])("The coordinate (%s) are negatives ", (input, expected) => {
-    expect(() => createRover(input, samplePlateau)).toThrow(expected);
+  ])("The coordinate (%s) are negatives ", (rover, expected) => {
+    expect(() => createRover(rover, samplePlateau)).toThrow(expected);
   });
 
   test.each([
@@ -46,31 +46,46 @@ describe("Set up the action for Rover", () => {
     ],
   ])(
     "The coordinate with only one/ more then two numbers",
-    (input, expected) => {
-      expect(() => createRover(input, samplePlateau)).toThrow(expected);
+    (rover, expected) => {
+      expect(() => createRover(rover, samplePlateau)).toThrow(expected);
     }
   );
 
   test.each([
-    ["1&2 S", "Incorrect input format received. "],
-    ["3|4 W", "Incorrect input format received. "],
-  ])("The coordinate (%s) is not separate with space", (input, expected) => {
-    expect(() => createRover(input, samplePlateau)).toThrow(expected);
+    [
+      "1&2 S",
+      "Incorrect input format received. The correct format: <x y facing>",
+    ],
+    [
+      "3|4 W",
+      "Incorrect input format received. The correct format: <x y facing>",
+    ],
+  ])("The coordinate (%s) is not separate with space", (rover, expected) => {
+    expect(() => createRover(rover, samplePlateau)).toThrow(expected);
   });
 
   test.each([
     ["11 1 E", "Oops! The Rover cannot reach the ground."],
     ["1 11 S", "Oops! The Rover cannot reach the ground."],
     ["11 11 W", "Oops! The Rover cannot reach the ground."],
-  ])("The coordinate (%s) is out of the Plateau", (input, expected) => {
-    expect(() => createRover(input, samplePlateau)).toThrow(expected);
+  ])("The coordinate (%s) is out of the Plateau", (rover, expected) => {
+    expect(() => createRover(rover, samplePlateau)).toThrow(expected);
   });
 
   test.each([
-    ["1 1 A", "The facing can only be 'N'/'E'/'S'/'W'. "],
-    ["1 2 B", "The facing can only be 'N'/'E'/'S'/'W'. "],
-    ["4 5 C", "The facing can only be 'N'/'E'/'S'/'W'. "],
-  ])("The facing (%s) is other than 'N'/'E'/'S'/'W'", (input, expected) => {
-    expect(() => createRover(input, samplePlateau)).toThrow(expected);
+    [
+      "1 1 A",
+      "Incorrect input format received. The correct format: <x y facing>",
+    ],
+    [
+      "1 2 B",
+      "Incorrect input format received. The correct format: <x y facing>",
+    ],
+    [
+      "4 5 C",
+      "Incorrect input format received. The correct format: <x y facing>",
+    ],
+  ])("The facing (%s) is other than 'N'/'E'/'S'/'W'", (rover, expected) => {
+    expect(() => createRover(rover, samplePlateau)).toThrow(expected);
   });
 });
