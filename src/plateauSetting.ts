@@ -3,14 +3,19 @@ import { Plateau } from "../types";
 
 export const createPlateau = (coordinates: string) => {
   clearLastLine();
-  closeReader();
-  if (!coordinates) throw new TypeError("Undefined coordinates");
+  // closeReader();
+  if (!coordinates) throw new TypeError("Undefined coordinate");
   return getPlateauCoordinate(coordinates);
 };
 
 function getPlateauCoordinate(coordinateString: string): Plateau {
   let coordinate = coordinateString.split(" ");
-  if (coordinate.length <= 1 || coordinate.length > 2)
+  if (
+    coordinate.length <= 1 ||
+    coordinate.length > 2 ||
+    isNaN(Number(coordinate[0])) ||
+    isNaN(Number(coordinate[1]))
+  )
     throw new TypeError(
       "Incorrect input format received. Please input again: <x y>"
     );
