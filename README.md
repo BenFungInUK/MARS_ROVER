@@ -1,5 +1,22 @@
 # MARS_ROVER
 
+## Assumption
+
+Assume that the Plateau is rectangle in shape
+
+## Key Features
+
+- Applied Test-Driven Development (TDD) to test-drive solution.
+- Mainly written in functional programming
+- Used Regular expression to validate the input
+- Used Async/Await to read the input in command-line windows.
+- The algorithm to calculate the movement is closed to circular linked list.
+
+## Future thought
+- Support Plateau in different shape
+- Support for 3D Plateau instead of 2D
+- Add random event e.g. different weather, monster on Plateau to affect the coordinate of Rover
+
 ## To test the programme
 
 It is better to comment out the following function in each script which may hide out the success message
