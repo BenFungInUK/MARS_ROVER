@@ -1,5 +1,4 @@
 import { clearLastLine } from "./console";
-import { directions } from "../constant";
 import { Plateau, Rover } from "../types";
 
 export function createRover(state: string, location: Plateau) {

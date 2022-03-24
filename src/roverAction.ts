@@ -25,7 +25,7 @@ const calculateRoverLocation = (
   rover: Rover,
   plateau: Plateau
 ) => {
-  [...actions].forEach((item, index) => {
+  [...actions].forEach((item) => {
     switch (item) {
       case "L":
         rover.facing = roverLocationActionMapping[rover.facing].prev;
@@ -41,6 +41,6 @@ const calculateRoverLocation = (
         break;
     }
   });
-  if (rover.x > plateau.x || rover.y > plateau.y)
+  if (rover.x > plateau.x || rover.y > plateau.y || rover.x < 0 || rover.y < 0)
     throw new TypeError("Oops! The Rover fall off from the Plateau.");
 };
